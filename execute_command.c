@@ -7,12 +7,13 @@
  */
 void execute_command(const char *command)
 {
+	char *processed_command;
 	if (is_comment(command))
 	{
 		return;
 	}
 
-	char *processed_command = remove_comments(command);
+	processed_command = remove_comments(command);
 
 	if (is_logical_operator_present(processed_command))
 	{
@@ -45,13 +46,14 @@ int is_comment(const char *command)
  *
  * Return: The command string with comments removed
  */
-char *remove_comments(char *command)
+char *remove_comments(const char *command)
 {
-	char *comment_pos = strchr(command, '#');
+	char *command_copy = strdup(command);
+	char *comment_pos = strchr(command_copy, '#');
 
 	if (comment_pos != NULL)
 	{
 		*comment_pos = '\0';
 	}
-	return (command);
+	return (command_copy);
 }

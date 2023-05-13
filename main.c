@@ -26,12 +26,12 @@ int main(void)
 void run_interactive_shell(void)
 {
 	char input[MAX_INPUT_SIZE];
-	char **command;
+	char **commands;
 	int i;
 
 	while (1)
 	{
-		puts("cisfun$ ");
+		write(STDOUT_FILENO, "#cisfun$ ", 10);
 		read_input(input);
 		if (input[0] == '\0')
 			continue;
@@ -69,6 +69,32 @@ void run_non_interactive_shell(void)
 
 void read_input(char *input)
 {
-	fgets(input, MAX_INPUT_SIZE, stdin);
-	input[strcspn(input, "\n")] = '\0';
+	size_t bufferSize = MAX_INPUT_SIZE;
+	ssize_t bytesRead = getline(&input, &bufferSize, stdin);
+
+	if (bytesRead != -1)
+		input[strcspn(input, "\n")] = '\0';
+}
+
+/**
+ * split_input_by_semicolon - split iinput by column
+ * @input: input
+ * Return: charactreer pointer
+ */
+char **split_input_by_semicolon(const char *input)
+{
+	char *input_copy = strdup(input);
+	char **commands = malloc((strlen(input) + 1) * sizeof(char *));
+	char *token = strtok(input_copy, ";");
+	int i = 0;
+
+	while (token != NULL)
+	{
+		commands[i] = strdup(token);
+		token = strtok(NULL, ";");
+		i++;
+	}
+	commands[i] = NULL;
+	free(input_copy);
+	return (commands);
 }
