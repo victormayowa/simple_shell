@@ -16,6 +16,8 @@ void execute_command_with_logical_or(const char *command)
 		execute_single_command(subcommands[i]);
 		i++;
 	}
+	for (i = 0; subcommands[i] != NULL; i++)
+		free(subcommands[i]);
 	free(subcommands);
 }
 
@@ -29,10 +31,13 @@ void execute_command_with_logical_and(const char *command)
 {
 	char **subcommands = split_command_by_logical_operator(command, "&&");
 	int i = 0;
+
 	while (subcommands[i] != NULL)
 	{
 		execute_single_command(subcommands[i]);
 		i++;
 	}
+	for (i = 0; subcommands[i] != NULL; i++)
+		free(subcommands[i]);
 	free(subcommands);
 }

@@ -8,6 +8,7 @@
 void execute_command(const char *command)
 {
 	char *processed_command;
+
 	if (is_comment(command))
 	{
 		return;
@@ -19,6 +20,8 @@ void execute_command(const char *command)
 	{
 		handle_logical_operator(processed_command);
 	}
+	else if (is_builtin_command(processed_command))
+		handle_builtin_command(processed_command);
 	else
 	{
 		execute_single_command(processed_command);
