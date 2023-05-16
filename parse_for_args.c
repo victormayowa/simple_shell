@@ -10,15 +10,15 @@
  */
 char **parse_command_for_arguments(const char *command)
 {
-	char **arguments = malloc(sizeof(char *) * strlen(command));
+	char **arguments = malloc(sizeof(char *) * _strlen(command));
 	int i = 0;
-	char *copy = strdup(command);
+	char *copy = _strdup(command);
 	char *token = strtok(copy, " \t\r\n");
 
 	while (token != NULL)
 	{
 		if (token[0] != '>')
-			arguments[i++] = strdup(token);
+			arguments[i++] = _strdup(token);
 		token = strtok(NULL, " \t\r\n");
 	}
 

@@ -8,17 +8,17 @@
 
 int is_builtin_command(const char *command)
 {
-	if (strncmp(command, "exit", 4) == 0)
+	if (_strncmp(command, "exit", 4) == 0)
 		return (1);
-	else if (strncmp(command, "@cd", 3) == 0)
+	else if (_strncmp(command, "@cd", 3) == 0)
 		return (1);
-	else if (strncmp(command, "@env", 4) == 0)
+	else if (_strncmp(command, "@env", 4) == 0)
 		return (1);
-	else if (strncmp(command, "@setenv", 7) == 0)
+	else if (_strncmp(command, "@setenv", 7) == 0)
 		return (1);
-	else if (strncmp(command, "@unsetenv", 9) == 0)
+	else if (_strncmp(command, "@unsetenv", 9) == 0)
 		return (1);
-	else if (strncmp(command, "@alias", 6) == 0)
+	else if (_strncmp(command, "@alias", 6) == 0)
 		return (1);
 	return (0);
 }
@@ -31,17 +31,17 @@ int is_builtin_command(const char *command)
 
 void handle_builtin_command(const char *command)
 {
-	if (strncmp(command, "exit", 4) == 0)
+	if (_strncmp(command, "exit", 4) == 0)
 		handle_exit_command(command);
-	else if (strncmp(command, "@cd", 3) == 0)
+	else if (_strncmp(command, "@cd", 3) == 0)
 		handle_cd_command(command);
-	else if (strncmp(command, "@env", 4) == 0)
+	else if (_strncmp(command, "@env", 4) == 0)
 		handle_env_command(command);
-	else if (strncmp(command, "@setenv", 7) == 0)
+	else if (_strncmp(command, "@setenv", 7) == 0)
 		handle_setenv_command(command);
-	else if (strncmp(command, "@unsetenv", 9) == 0)
+	else if (_strncmp(command, "@unsetenv", 9) == 0)
 		handle_unsetenv_command(command);
-	else if (strncmp(command, "@alias", 6) == 0)
+	else if (_strncmp(command, "@alias", 6) == 0)
 		handle_alias_command(command);
 }
 
@@ -83,11 +83,11 @@ void handle_cd_command(const char *command)
 void handle_alias_command(const char *command)
 {
 	const char *alias = command + 6;
-	const char *value = strchr(alias, ' ');
+	const char *value = _strchr(alias, ' ');
 
 	if (value == NULL)
 	{
-		puts("Invalid format for alias command.");
+		_puts("Invalid format for alias command.");
 		return;
 	}
 	value++;

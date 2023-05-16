@@ -12,7 +12,7 @@ void handle_env_command(const char *command)
 
 	(void)command;
 	for (; *env != NULL; env++)
-		puts(*env);
+		_puts(*env);
 }
 
 /**
@@ -24,11 +24,11 @@ void handle_env_command(const char *command)
 void handle_setenv_command(const char *command)
 {
 	const char *variable = command + 7;
-	const char *value = strchr(variable, ' ');
+	const char *value = _strchr(variable, ' ');
 
 	if (value == NULL)
 	{
-		puts("Invalid format for setenv command.");
+		_puts("Invalid format for setenv command.");
 		return;
 	}
 	value++;

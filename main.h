@@ -1,5 +1,5 @@
-#ifndef MY_HEADER_FILE_H
-#define MY_HEADER_FILE_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,6 +9,7 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <errno.h>
+#include <stddef.h>
 
 #define MAX_INPUT_SIZE 1024
 
@@ -51,4 +52,17 @@ char **parse_command_for_filenames(const char *command);
 char **parse_command_for_arguments(const char *command);
 void execute_external_command(char **arguments, char **filenames);
 
+/* String functions */
+char *_strchr(const char *s, int c);
+int _strcmp(const char *s1, const char *s2);
+int _strncmp(const char *s1, const char *s2, size_t n);
+char *_strcpy(char *dest, const char *src);
+char *_strncpy(char *dest, const char *src, size_t n);
+char *_strdup(const char *s);
+size_t _strlen(const char *str);
+char *_strpbrk(const char *s, const char *accept);
+unsigned int _strspn(const char *s, const char *reject);
+
+int _putchar(char c);
+int _puts(const char *s);
 #endif

@@ -11,7 +11,7 @@ char **parse_command_for_filenames(const char *command)
 {
 	char **filenames = malloc(sizeof(char *) * strlen(command));
 	int i = 0;
-	char *copy = strdup(command);
+	char *copy = _strdup(command);
 	char *token = strtok(copy, " \t\r\n");
 
 	while (token != NULL)

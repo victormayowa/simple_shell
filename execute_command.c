@@ -51,8 +51,8 @@ int is_comment(const char *command)
  */
 char *remove_comments(const char *command)
 {
-	char *command_copy = strdup(command);
-	char *comment_pos = strchr(command_copy, '#');
+	char *command_copy = _strdup(command);
+	char *comment_pos = _strchr(command_copy, '#');
 
 	if (comment_pos != NULL)
 	{
