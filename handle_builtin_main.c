@@ -10,15 +10,15 @@ int is_builtin_command(const char *command)
 {
 	if (_strncmp(command, "exit", 4) == 0)
 		return (1);
-	else if (_strncmp(command, "@cd", 3) == 0)
+	else if (_strncmp(command, "cd", 2) == 0)
 		return (1);
 	else if (_strncmp(command, "@env", 4) == 0)
 		return (1);
-	else if (_strncmp(command, "@setenv", 7) == 0)
+	else if (_strncmp(command, "setenv", 6) == 0)
 		return (1);
-	else if (_strncmp(command, "@unsetenv", 9) == 0)
+	else if (_strncmp(command, "unsetenv", 8) == 0)
 		return (1);
-	else if (_strncmp(command, "@alias", 6) == 0)
+	else if (_strncmp(command, "alias", 5) == 0)
 		return (1);
 	return (0);
 }
@@ -33,15 +33,15 @@ void handle_builtin_command(const char *command)
 {
 	if (_strncmp(command, "exit", 4) == 0)
 		handle_exit_command(command);
-	else if (_strncmp(command, "@cd", 3) == 0)
+	else if (_strncmp(command, "cd", 2) == 0)
 		handle_cd_command(command);
 	else if (_strncmp(command, "@env", 4) == 0)
 		handle_env_command(command);
-	else if (_strncmp(command, "@setenv", 7) == 0)
+	else if (_strncmp(command, "setenv", 6) == 0)
 		handle_setenv_command(command);
-	else if (_strncmp(command, "@unsetenv", 9) == 0)
+	else if (_strncmp(command, "unsetenv", 8) == 0)
 		handle_unsetenv_command(command);
-	else if (_strncmp(command, "@alias", 6) == 0)
+	else if (_strncmp(command, "alias", 5) == 0)
 		handle_alias_command(command);
 }
 
@@ -68,7 +68,7 @@ void handle_exit_command(const char *command)
 
 void handle_cd_command(const char *command)
 {
-	const char *directory = command + 3;
+	const char *directory = command + 2;
 
 	if (chdir(directory) != 0)
 		perror("cd");
@@ -82,8 +82,8 @@ void handle_cd_command(const char *command)
 
 void handle_alias_command(const char *command)
 {
-	const char *alias = command + 6;
-	const char *value = _strchr(alias, ' ');
+	const char *alias = command + 5;
+	const char *value = strchr(alias, ' ');
 
 	if (value == NULL)
 	{

@@ -23,7 +23,7 @@ void handle_env_command(const char *command)
 
 void handle_setenv_command(const char *command)
 {
-	const char *variable = command + 7;
+	const char *variable = command + 6;
 	const char *value = _strchr(variable, ' ');
 
 	if (value == NULL)
@@ -44,7 +44,7 @@ void handle_setenv_command(const char *command)
 
 void handle_unsetenv_command(const char *command)
 {
-	const char *variable = command + 9;
+	const char *variable = command + 8;
 
 	if (unsetenv(variable) != 0)
 		perror("unsetenv");
