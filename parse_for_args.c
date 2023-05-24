@@ -12,14 +12,14 @@ char **parse_command_for_arguments(const char *command)
 {
 	char **arguments = malloc(sizeof(char *) * _strlen(command));
 	int i = 0;
-	char *copy = _strdup(command);
-	char *token = strtok(copy, " \t\r\n");
+	char *copy = strdup(command);
+	char *token = _strtok(copy, " \t\r\n");
 
 	while (token != NULL)
 	{
 		if (token[0] != '>')
-			arguments[i++] = _strdup(token);
-		token = strtok(NULL, " \t\r\n");
+			arguments[i++] = strdup(token);
+		token = _strtok(NULL, " \t\r\n");
 	}
 
 	arguments[i] = NULL;

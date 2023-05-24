@@ -7,13 +7,13 @@
  *
  * Return: void
  */
-void execute_single_command(const char *command)
+int execute_single_command(const char *command)
 {
 	char **filenames = parse_command_for_filenames(command);
 	char **arguments = parse_command_for_arguments(command);
+	int exit_status = execute_external_command(arguments, filenames);
 
-	execute_external_command(arguments, filenames);
 	free(filenames);
-
 	free(arguments);
+	return (exit_status);
 }

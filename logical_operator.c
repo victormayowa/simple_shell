@@ -42,15 +42,15 @@ void handle_logical_operator(const char *command)
  */
 char **split_command_by_logical_operator(const char *cmd, const char *oprt)
 {
-	char **subcommands = malloc(sizeof(char *) * _strlen(cmd));
+	char **subcommands = malloc(sizeof(char *) * strlen(cmd));
 	int i = 0;
-	char *copy = _strdup(cmd);
-	char *token = strtok(copy, oprt);
+	char *copy = strdup(cmd);
+	char *token = _strtok(copy, oprt);
 
 	while (token != NULL)
 	{
-		subcommands[i++] = _strdup(token);
-		token = strtok(NULL, oprt);
+		subcommands[i++] = strdup(token);
+		token = _strtok(NULL, oprt);
 	}
 	subcommands[i] = NULL;
 

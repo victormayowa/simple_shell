@@ -85,13 +85,13 @@ char **split_input_by_semicolon(const char *input)
 {
 	char *input_copy = _strdup(input);
 	char **commands = malloc((strlen(input) + 1) * sizeof(char *));
-	char *token = strtok(input_copy, ";");
+	char *token = _strtok(input_copy, ";");
 	int i = 0;
 
 	while (token != NULL)
 	{
 		commands[i] = _strdup(token);
-		token = strtok(NULL, ";");
+		token = _strtok(NULL, ";");
 		i++;
 	}
 	commands[i] = NULL;

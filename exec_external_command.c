@@ -12,7 +12,7 @@
  * with that name. If filenames[1] is not NULL, the error output of
  * the command will be redirected to the file with that name.
  */
-void execute_external_command(char **arguments, char **filenames)
+int execute_external_command(char **arguments, char **filenames)
 {
 	pid_t pid = fork();
 
@@ -40,5 +40,6 @@ void execute_external_command(char **arguments, char **filenames)
 		int status;
 
 		waitpid(pid, &status, 0);
+		return (0);
 	}
 }

@@ -29,10 +29,10 @@ char *remove_comments(const char *command);
 /* logical operator handler */
 int is_logical_operator_present(const char *command);
 void handle_logical_operator(const char *command);
-void execute_command_with_logical_or(const char *command);
-void execute_command_with_logical_and(const char *command);
+int execute_command_with_logical_or(const char *command);
+int execute_command_with_logical_and(const char *command);
 char **split_command_by_logical_operator(const char *cmd, const char* oprt);
-void execute_single_command(const char *command);
+int execute_single_command(const char *command);
 void handle_logical_operator(const char *command);
 
 void execute_command(const char *command);
@@ -50,7 +50,7 @@ void handle_alias_command(const char *command);
 /* handle files and arguments */
 char **parse_command_for_filenames(const char *command);
 char **parse_command_for_arguments(const char *command);
-void execute_external_command(char **arguments, char **filenames);
+int execute_external_command(char **arguments, char **filenames);
 
 /* String functions */
 char *_strchr(const char *s, int c);
@@ -62,7 +62,7 @@ char *_strdup(const char *s);
 size_t _strlen(const char *str);
 char *_strpbrk(const char *s, const char *accept);
 unsigned int _strspn(const char *s, const char *reject);
-
+char *_strtok(char *str, const char *delimiters);
 int _putchar(char c);
 int _puts(const char *s);
 #endif
