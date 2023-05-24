@@ -10,58 +10,57 @@
 #include <signal.h>
 #include <errno.h>
 #include <stddef.h>
+#include <sys/stat.h>
 
 #define MAX_INPUT_SIZE 1024
+#define CHARN 10
+#define ERR "check number of arguments passed\n"
+#define VALUE "variable does not exist\n"
 
 extern char **environ;
 
 /* main */
-void read_input(char *input);
-int is_interactive(void);
-void run_interactive_shell(void);
-void run_non_interactive_shell(void);
-char **split_input_by_semicolon(const char *input);
+int run_interactive_shell(void);
+int run_non_interactive_shell(char *inp);
 
 /* comment handler */
-int is_comment(const char *command);
-char *remove_comments(const char *command);
 
 /* logical operator handler */
-int is_logical_operator_present(const char *command);
-void handle_logical_operator(const char *command);
-int execute_command_with_logical_or(const char *command);
-int execute_command_with_logical_and(const char *command);
-char **split_command_by_logical_operator(const char *cmd, const char* oprt);
-int execute_single_command(const char *command);
-void handle_logical_operator(const char *command);
-
-void execute_command(const char *command);
 
 /* handle built ins */
-int is_builtin_command(const char *command);
-void handle_builtin_command(const char *command);
-void handle_exit_command(const char *command);
-void handle_cd_command(const char *command);
-void handle_env_command(const char *command);
-void handle_setenv_command(const char *command);
-void handle_unsetenv_command(const char *command);
-void handle_alias_command(const char *command);
+int allbuiltin(char **av, char **env);
+void cd_builtin(char **av, char **env);
+void myenv(void);
+void err(char *av);
+void execute_cmd(char **av);
+char *exec_new(char **av);
+ssize_t gettypro(char **a, char *b, char *c, char *buf_end, size_t *g);
+ssize_t getty(char **ptr, size_t *g, FILE *str);
+void empty1(char **av);
+void empty(char **av, char **env);
+char *get_input(void);
+char **tok(char *cmd, char *d);
+int myenvset(char **av, char **env);
+int myenvunset(char **av, char **env);
+char *mygetenv(const char *n);
+char **createnv(void);
+int myvarset(char *av, char *val, char **env);
+int mypwd(char **env, char *cur);
+
+/* new strings */
+
+char *mystrcat(char *dest, char *src);
+char *alloc(char *lineptr, size_t os, size_t ns);
+char *_copy(char *d, char *s, size_t g);
+int strcompare(const char *s1, const char *s2);
+size_t strlength(const char *str);
+char *strduplicate(const char *s);
+ char *strcopy(char *dest, const char *src);
 
 /* handle files and arguments */
-char **parse_command_for_filenames(const char *command);
-char **parse_command_for_arguments(const char *command);
-int execute_external_command(char **arguments, char **filenames);
 
 /* String functions */
 char *_strchr(const char *s, int c);
-int _strcmp(const char *s1, const char *s2);
-int _strncmp(const char *s1, const char *s2, size_t n);
-char *_strcpy(char *dest, const char *src);
-char *_strncpy(char *dest, const char *src, size_t n);
-char *_strdup(const char *s);
-size_t _strlen(const char *str);
-char *_strpbrk(const char *s, const char *accept);
-unsigned int _strspn(const char *s, const char *reject);
 char *_strtok(char *str, const char *delimiters);
 int _putchar(char c);
 int _puts(const char *s);
